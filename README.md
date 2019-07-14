@@ -1,24 +1,33 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Example API
 
-Things you may want to cover:
+## Development
 
-* Ruby version
+#### Initial Setup
+```
+docker-compose build
+docker-compose run web rake db:create db:migrate
+```
 
-* System dependencies
+#### Development Server
+```
+docker-sync-stack start
+```
 
-* Configuration
+#### Rails Console
+```
+docker-compose run web rails console
+```
 
-* Database creation
+#### Editing Credentials
+```
+EDITOR="vim" bin/rails credentials:edit
+```
 
-* Database initialization
 
-* How to run the test suite
+## Production
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#### Deployment
+```
+cap staging deploy
+```
