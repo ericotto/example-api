@@ -10,3 +10,6 @@ COPY Gemfile.lock /example-api/Gemfile.lock
 RUN bundle install
 
 COPY . /example-api
+
+RUN ["chmod", "+x", "./docker-start.sh"]
+ENTRYPOINT ["sh", "./docker-start.sh"]
