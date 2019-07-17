@@ -1,14 +1,9 @@
 namespace :rails do
-  desc "Run the console on a remote server."
+  desc "Remote console"
   task :console do
     on roles(:app) do |h|
-      execute_interactively "RAILS_ENV=#{fetch(:rails_env)} bundle exec rails console", h.user
+      command =  "RAILS_ENV=#{fetch(:rails_env)} bundle exec rails console"
+      exec "ssh  #{h.user}@#{host} cd #{fetch(:deploy_to)}/current && #{command}"
     end
-  end
-
-  def execute_interactively(command, user)
-    info "Connecting with #{user}@#{host}"
-    cmd = "ssh #{user}@#{host} -p 22 -t 'cd #{fetch(:deploy_to)}/current && #{command}'"
-    exec cmd
   end
 end

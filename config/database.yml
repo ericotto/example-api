@@ -26,3 +26,4 @@ production:
   username: ubuntu
   database: example-api
   password: <%= Rails.application.credentials.dig(:production, :db_password) %>
+  host: localhost
